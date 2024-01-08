@@ -37,3 +37,12 @@ class Products(models.Model):
 
     def __str__(self):
         return f'{self.name} quantity - {self.quantity}'
+
+    def display_id(self):
+        return f'{self.id:05}'  # Добавляем пять символов
+
+    def sell_price(self):
+        if self.discount:
+            result_price = round(self.price - self.price / 100 * self.discount, 2)
+            return f'{result_price}'
+        return self.price
